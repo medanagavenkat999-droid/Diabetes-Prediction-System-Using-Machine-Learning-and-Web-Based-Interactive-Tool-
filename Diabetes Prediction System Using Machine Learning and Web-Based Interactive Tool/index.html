@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSight | Diabetes Risk Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2.0">
+</head>
+
+<body>
+  <div class="background-mesh">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#8b5cf6" />
+              <stop offset="100%" stop-color="#4f46e5" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
+        <span>DeepSight</span>
+      </div>
+      <p class="subtitle">AI-Powered End-to-End Diabetes Risk Analysis</p>
+    </header>
+
+    <main class="main-card glass-panel">
+      <h1 class="title">Patient Diagnostic Data</h1>
+      <p class="instructions">Enter the clinical metrics below to generate a real-time risk prediction model.</p>
+
+      <form action="{{ url_for('predict')}}" method="post" class="prediction-form">
+        <div class="form-grid">
+          <div class="input-group">
+            <input type="number" id="pregnancies" name="pregnancies" required placeholder=" " step="1">
+            <label for="pregnancies">Pregnancies (Count)</label>
+          </div>
+          <div class="input-group">
+            <input type="number" id="glucose" name="glucose" required placeholder=" " step="1">
+            <label for="glucose">Glucose (mg/dL)</label>
+          </div>
+          <div class="input-group">
+            <input type="number" id="bloodpressure" name="bloodpressure" required placeholder=" " step="1">
+            <label for="bloodpressure">Blood Pressure (mmHg)</label>
+          </div>
+          <div class="input-group">
+            <input type="number" id="skinthickness" name="skinthickness" required placeholder=" " step="1">
+            <label for="skinthickness">Skin Thickness (mm)</label>
+          </div>
+          <div class="input-group">
+            <input type="number" id="insulin" name="insulin" required placeholder=" " step="1">
+            <label for="insulin">Insulin Level (IU/mL)</label>
+          </div>
+          <div class="input-group">
+            <input type="number" id="bmi" name="bmi" required placeholder=" " step="any">
+            <label for="bmi">Body Mass Index (kg/m²)</label>
+          </div>
+          <div class="input-group">
+            <input type="number" id="dpf" name="dpf" required placeholder=" " step="any">
+            <label for="dpf">Diabetes Pedigree Function</label>
+          </div>
+          <div class="input-group">
+            <input type="number" id="age" name="age" required placeholder=" " step="1">
+            <label for="age">Age (years)</label>
+          </div>
+        </div>
+        <button type="submit" class="btn-predict">
+          <span>Generate Prediction Analysis</span>
+          <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </form>
+    </main>
+
+    <footer class="footer">
+      <p>Made by Venkat</p>
+    </footer>
+  </div>
+</body>
+
+</html>
