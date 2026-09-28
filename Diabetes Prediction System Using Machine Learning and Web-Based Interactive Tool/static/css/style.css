@@ -602,6 +602,15 @@ input:-webkit-autofill:active {
     padding: 2.5rem 1.5rem;
   }
 
+  .form-grid {
+    gap: 1.5rem;
+  }
+
+  .container {
+    padding: 2rem 1rem;
+  }
+}
+
 /* =========================================
    DEEPSIGHT HOME / LANDING PAGE
    ========================================= */
