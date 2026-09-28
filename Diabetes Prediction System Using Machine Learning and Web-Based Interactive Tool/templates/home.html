@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,210 +8,603 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
-    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #05030f;
+      --panel: rgba(16, 12, 35, 0.72);
+      --border: rgba(255,255,255,.10);
+      --text: #f8fafc;
+      --muted: #9aa4bd;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+    }
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3.0">
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .ds-home {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(139,92,246,.22), transparent 32%),
+        radial-gradient(circle at 90% 75%, rgba(236,72,153,.16), transparent 30%),
+        radial-gradient(circle at 52% 45%, rgba(14,165,233,.08), transparent 28%),
+        #05030f;
+    }
+
+    .ds-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      opacity: .16;
+    }
+
+    .ds-glow.one {
+      background: #8b5cf6;
+      top: -280px;
+      left: -220px;
+    }
+
+    .ds-glow.two {
+      background: #ec4899;
+      right: -260px;
+      bottom: -250px;
+    }
+
+    .ds-nav,
+    .ds-main,
+    .ds-features,
+    .ds-disclaimer,
+    .ds-footer {
+      position: relative;
+      z-index: 2;
+      width: min(1160px, calc(100% - 48px));
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .ds-nav {
+      padding-top: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ds-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ds-brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #8b5cf6, #4f46e5);
+      box-shadow: 0 10px 35px rgba(139,92,246,.35);
+    }
+
+    .ds-brand-mark svg {
+      width: 23px;
+      height: 23px;
+      fill: white;
+    }
+
+    .ds-brand-name {
+      font-family: Outfit, sans-serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -.8px;
+    }
+
+    .ds-nav-label {
+      color: var(--muted);
+      font-size: .85rem;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .ds-main {
+      padding-top: 86px;
+      padding-bottom: 72px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .ds-badge {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      margin-bottom: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(139,92,246,.30);
+      background: rgba(139,92,246,.10);
+      color: #c8b9ff;
+      font-size: .82rem;
+      font-weight: 600;
+    }
+
+    .ds-status {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 12px #22c55e;
+    }
+
+    .ds-title {
+      max-width: 690px;
+      font-family: Outfit, sans-serif;
+      font-size: clamp(3.2rem, 6vw, 5.5rem);
+      line-height: .98;
+      letter-spacing: -3px;
+      font-weight: 800;
+    }
+
+    .ds-gradient {
+      display: block;
+      background: linear-gradient(90deg, #a78bfa, #ec4899, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .ds-description {
+      max-width: 610px;
+      margin-top: 25px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .ds-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 31px;
+      flex-wrap: wrap;
+    }
+
+    .ds-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      padding: 14px 20px;
+      border-radius: 13px;
+      color: white;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      text-decoration: none;
+      font-family: Outfit, sans-serif;
+      font-weight: 700;
+      box-shadow: 0 14px 35px rgba(139,92,246,.28);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .ds-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(139,92,246,.42);
+    }
+
+    .ds-button svg {
+      width: 19px !important;
+      height: 19px !important;
+      display: block;
+      flex: 0 0 19px;
+      fill: none !important;
+      stroke: currentColor;
+    }
+
+    .ds-note {
+      color: #69738c;
+      font-size: .82rem;
+    }
+
+    .ds-card {
+      position: relative;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      background: linear-gradient(145deg, rgba(25,20,52,.82), rgba(8,7,22,.74));
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.45),
+        inset 0 1px rgba(255,255,255,.07);
+      overflow: hidden;
+    }
+
+    .ds-card::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(139,92,246,.12);
+      filter: blur(65px);
+      right: -90px;
+      top: -80px;
+    }
+
+    .ds-card-top {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ds-ai-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      box-shadow: 0 0 28px rgba(139,92,246,.32);
+      font-size: 1.25rem;
+    }
+
+    .ds-card-title {
+      font-family: Outfit, sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .ds-card-subtitle {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .ds-bars {
+      display: flex;
+      gap: 7px;
+      margin: 28px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ds-bars span {
+      height: 5px;
+      flex: 1;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+    }
+
+    .ds-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ds-stat {
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 13px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .ds-stat small {
+      display: block;
+      color: #69738c;
+      font-size: .72rem;
+      margin-bottom: 6px;
+    }
+
+    .ds-stat strong {
+      font-family: Outfit, sans-serif;
+      font-size: .86rem;
+    }
+
+    .ds-scan {
+      height: 155px;
+      margin-top: 15px;
+      border-radius: 16px;
+      border: 1px solid rgba(139,92,246,.22);
+      background:
+        radial-gradient(circle at center, rgba(139,92,246,.13), transparent 58%),
+        rgba(0,0,0,.16);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ds-scan-line {
+      position: absolute;
+      width: 75%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+      animation: dsScan 2.7s ease-in-out infinite;
+    }
+
+    .ds-scan-circle {
+      width: 70px;
+      height: 70px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #8b5cf6;
+      border-radius: 50%;
+      color: #c4b5fd;
+      font-family: Outfit, sans-serif;
+      font-weight: 800;
+      box-shadow: 0 0 28px rgba(139,92,246,.32);
+    }
+
+    .ds-ready {
+      position: relative;
+      z-index: 1;
+      margin-top: 13px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    @keyframes dsScan {
+      0%, 100% { transform: translateY(-60px); opacity: .15; }
+      50% { transform: translateY(60px); opacity: 1; }
+    }
+
+    .ds-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+      padding-bottom: 18px;
+    }
+
+    .ds-feature {
+      padding: 23px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(15,12,31,.68);
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .ds-feature:hover {
+      transform: translateY(-4px);
+      border-color: rgba(139,92,246,.35);
+    }
+
+    .ds-feature-icon {
+      font-size: 1.45rem;
+      margin-bottom: 13px;
+    }
+
+    .ds-feature h3 {
+      font-family: Outfit, sans-serif;
+      font-size: 1.05rem;
+      margin-bottom: 7px;
+    }
+
+    .ds-feature p {
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.65;
+    }
+
+    .ds-disclaimer {
+      padding: 16px 19px;
+      margin-top: 18px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px;
+      background: rgba(255,255,255,.025);
+      color: #778199;
+      font-size: .76rem;
+      line-height: 1.6;
+    }
+
+    .ds-disclaimer strong {
+      color: #bcaeff;
+    }
+
+    .ds-footer {
+      padding: 32px 0 35px;
+      text-align: center;
+      color: #596278;
+      font-size: .78rem;
+    }
+
+    @media (max-width: 900px) {
+      .ds-main {
+        grid-template-columns: 1fr;
+        gap: 42px;
+        padding-top: 60px;
+      }
+
+      .ds-title {
+        font-size: clamp(3rem, 9vw, 4.5rem);
+      }
+
+      .ds-card {
+        max-width: 560px;
+        width: 100%;
+        margin: auto;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .ds-nav,
+      .ds-main,
+      .ds-features,
+      .ds-disclaimer,
+      .ds-footer {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .ds-nav-label {
+        display: none;
+      }
+
+      .ds-brand-name {
+        font-size: 1.45rem;
+      }
+
+      .ds-main {
+        padding-top: 48px;
+      }
+
+      .ds-title {
+        font-size: 3rem;
+        letter-spacing: -2px;
+      }
+
+      .ds-description {
+        font-size: .98rem;
+      }
+
+      .ds-features {
+        grid-template-columns: 1fr;
+      }
+
+      .ds-card {
+        padding: 21px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="ds-home">
+    <div class="ds-glow one"></div>
+    <div class="ds-glow two"></div>
 
-  <!-- Background -->
-  <div class="background-mesh">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </div>
-
-  <div class="container home-container">
-
-    <!-- Header -->
-    <header class="home-header">
-
-      <div class="logo">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#8b5cf6" />
-              <stop offset="100%" stop-color="#4f46e5" />
-            </linearGradient>
-          </defs>
-
-          <path
-            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
-            2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
-            C13.09 3.81 14.76 3 16.5 3
-            19.58 3 22 5.42 22 8.5
-            c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-        </svg>
-
-        <span>DeepSight</span>
+    <nav class="ds-nav">
+      <div class="ds-brand">
+        <div class="ds-brand-mark">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+        <div class="ds-brand-name">DeepSight</div>
       </div>
 
-      <p class="subtitle">
-        AI-Powered End-to-End Diabetes Risk Analysis
-      </p>
+      <div class="ds-nav-label">AI Diabetes Risk Analysis</div>
+    </nav>
 
-    </header>
-
-
-    <!-- Hero Section -->
-    <main class="hero-section">
-
-      <div class="hero-content">
-
-        <div class="hero-badge">
-          <span class="status-dot"></span>
+    <main class="ds-main">
+      <section>
+        <div class="ds-badge">
+          <span class="ds-status"></span>
           Machine Learning Powered
         </div>
 
-        <h1>
+        <h1 class="ds-title">
           Understand Your
-          <span>Diabetes Risk</span>
+          <span class="ds-gradient">Diabetes Risk</span>
           with AI
         </h1>
 
-        <p class="hero-description">
-          DeepSight uses a machine learning model to analyze
-          clinical health metrics and generate an instant
-          diabetes risk prediction.
+        <p class="ds-description">
+          DeepSight uses a machine learning model to analyze clinical
+          health metrics and generate an instant diabetes risk prediction.
         </p>
 
-        <a href="{{ url_for('predict_page') }}" class="hero-button">
-          <span>Start Risk Assessment</span>
+        <div class="ds-actions">
+          <a href="{{ url_for('predict_page') }}" class="ds-button">
+            Start Risk Assessment
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h13M13 6l6 6-6 6"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+          </a>
 
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M5 12h13M13 6l6 6-6 6"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </a>
+          <span class="ds-note">Simple • Fast • Machine Learning Based</span>
+        </div>
+      </section>
 
-        <p class="hero-note">
-          Simple • Fast • Machine Learning Based
-        </p>
-
-      </div>
-
-
-      <!-- AI Visual Card -->
-      <div class="hero-visual">
-
-        <div class="ai-card glass-panel">
-
-          <div class="ai-card-header">
-            <div class="ai-icon">✦</div>
-
-            <div>
-              <h3>DeepSight AI</h3>
-              <p>Risk Analysis Engine</p>
-            </div>
+      <section class="ds-card">
+        <div class="ds-card-top">
+          <div class="ds-ai-icon">✦</div>
+          <div>
+            <div class="ds-card-title">DeepSight AI</div>
+            <div class="ds-card-subtitle">Risk Analysis Engine</div>
           </div>
-
-          <div class="analysis-line">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-          <div class="analysis-info">
-            <div>
-              <small>Analysis</small>
-              <strong>Clinical Metrics</strong>
-            </div>
-
-            <div>
-              <small>Model</small>
-              <strong>Machine Learning</strong>
-            </div>
-          </div>
-
-          <div class="scan-box">
-            <div class="scan-line"></div>
-
-            <div class="scan-center">
-              <span>AI</span>
-            </div>
-          </div>
-
-          <p class="scan-text">
-            Ready to analyze patient data
-          </p>
-
         </div>
 
-      </div>
+        <div class="ds-bars">
+          <span></span><span></span><span></span><span></span>
+        </div>
 
+        <div class="ds-stats">
+          <div class="ds-stat">
+            <small>Analysis</small>
+            <strong>Clinical Metrics</strong>
+          </div>
+          <div class="ds-stat">
+            <small>Model</small>
+            <strong>Machine Learning</strong>
+          </div>
+        </div>
+
+        <div class="ds-scan">
+          <div class="ds-scan-line"></div>
+          <div class="ds-scan-circle">AI</div>
+        </div>
+
+        <div class="ds-ready">Ready to analyze patient data</div>
+      </section>
     </main>
 
-
-    <!-- Features -->
-    <section class="features-section">
-
-      <div class="feature-card glass-panel">
-        <div class="feature-icon">⚡</div>
-
+    <section class="ds-features">
+      <article class="ds-feature">
+        <div class="ds-feature-icon">⚡</div>
         <h3>Fast Analysis</h3>
+        <p>Generate a prediction quickly after entering the required clinical measurements.</p>
+      </article>
 
-        <p>
-          Generate a prediction quickly after entering
-          the required clinical measurements.
-        </p>
-      </div>
-
-
-      <div class="feature-card glass-panel">
-        <div class="feature-icon">🧠</div>
-
+      <article class="ds-feature">
+        <div class="ds-feature-icon">🧠</div>
         <h3>Machine Learning</h3>
+        <p>Uses a trained machine learning model to analyze the provided patient data.</p>
+      </article>
 
-        <p>
-          Uses a trained machine learning model to
-          analyze the provided patient data.
-        </p>
-      </div>
-
-
-      <div class="feature-card glass-panel">
-        <div class="feature-icon">📊</div>
-
+      <article class="ds-feature">
+        <div class="ds-feature-icon">📊</div>
         <h3>Simple Interface</h3>
-
-        <p>
-          Enter patient metrics through a clean,
-          responsive and easy-to-use interface.
-        </p>
-      </div>
-
+        <p>Enter patient metrics through a clean, responsive and easy-to-use interface.</p>
+      </article>
     </section>
 
-
-    <!-- Disclaimer -->
-    <section class="disclaimer glass-panel">
-
+    <section class="ds-disclaimer">
       <strong>Important:</strong>
-
-      This application is intended for educational and
-      informational purposes only. It is not a substitute
-      for professional medical diagnosis or advice.
-
+      This application is intended for educational and informational purposes only.
+      It is not a substitute for professional medical diagnosis or advice.
     </section>
 
-
-    <!-- Footer -->
-    <footer class="footer">
-      <p>Made by Venkat • DeepSight AI</p>
+    <footer class="ds-footer">
+      Made by Venkat • DeepSight AI
     </footer>
-
   </div>
-
 </body>
-
 </html>
