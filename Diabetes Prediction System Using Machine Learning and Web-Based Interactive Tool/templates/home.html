@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DeepSight | AI Diabetes Risk Analysis</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=3.0">
+</head>
+
+<body>
+
+  <!-- Background -->
+  <div class="background-mesh">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="container home-container">
+
+    <!-- Header -->
+    <header class="home-header">
+
+      <div class="logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#8b5cf6" />
+              <stop offset="100%" stop-color="#4f46e5" />
+            </linearGradient>
+          </defs>
+
+          <path
+            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+            2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09
+            C13.09 3.81 14.76 3 16.5 3
+            19.58 3 22 5.42 22 8.5
+            c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
+
+        <span>DeepSight</span>
+      </div>
+
+      <p class="subtitle">
+        AI-Powered End-to-End Diabetes Risk Analysis
+      </p>
+
+    </header>
+
+
+    <!-- Hero Section -->
+    <main class="hero-section">
+
+      <div class="hero-content">
+
+        <div class="hero-badge">
+          <span class="status-dot"></span>
+          Machine Learning Powered
+        </div>
+
+        <h1>
+          Understand Your
+          <span>Diabetes Risk</span>
+          with AI
+        </h1>
+
+        <p class="hero-description">
+          DeepSight uses a machine learning model to analyze
+          clinical health metrics and generate an instant
+          diabetes risk prediction.
+        </p>
+
+        <a href="{{ url_for('predict_page') }}" class="hero-button">
+          <span>Start Risk Assessment</span>
+
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M5 12h13M13 6l6 6-6 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+
+        <p class="hero-note">
+          Simple • Fast • Machine Learning Based
+        </p>
+
+      </div>
+
+
+      <!-- AI Visual Card -->
+      <div class="hero-visual">
+
+        <div class="ai-card glass-panel">
+
+          <div class="ai-card-header">
+            <div class="ai-icon">✦</div>
+
+            <div>
+              <h3>DeepSight AI</h3>
+              <p>Risk Analysis Engine</p>
+            </div>
+          </div>
+
+          <div class="analysis-line">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="analysis-info">
+            <div>
+              <small>Analysis</small>
+              <strong>Clinical Metrics</strong>
+            </div>
+
+            <div>
+              <small>Model</small>
+              <strong>Machine Learning</strong>
+            </div>
+          </div>
+
+          <div class="scan-box">
+            <div class="scan-line"></div>
+
+            <div class="scan-center">
+              <span>AI</span>
+            </div>
+          </div>
+
+          <p class="scan-text">
+            Ready to analyze patient data
+          </p>
+
+        </div>
+
+      </div>
+
+    </main>
+
+
+    <!-- Features -->
+    <section class="features-section">
+
+      <div class="feature-card glass-panel">
+        <div class="feature-icon">⚡</div>
+
+        <h3>Fast Analysis</h3>
+
+        <p>
+          Generate a prediction quickly after entering
+          the required clinical measurements.
+        </p>
+      </div>
+
+
+      <div class="feature-card glass-panel">
+        <div class="feature-icon">🧠</div>
+
+        <h3>Machine Learning</h3>
+
+        <p>
+          Uses a trained machine learning model to
+          analyze the provided patient data.
+        </p>
+      </div>
+
+
+      <div class="feature-card glass-panel">
+        <div class="feature-icon">📊</div>
+
+        <h3>Simple Interface</h3>
+
+        <p>
+          Enter patient metrics through a clean,
+          responsive and easy-to-use interface.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- Disclaimer -->
+    <section class="disclaimer glass-panel">
+
+      <strong>Important:</strong>
+
+      This application is intended for educational and
+      informational purposes only. It is not a substitute
+      for professional medical diagnosis or advice.
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Made by Venkat • DeepSight AI</p>
+    </footer>
+
+  </div>
+
+</body>
+
+</html>
